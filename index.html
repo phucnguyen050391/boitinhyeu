@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+
+
+<title>Bói tình yêu – Bói tình duyên theo tên chính xác | Boitinhyeu.net</title>
+<meta name="description" content="Bói tình yêu theo tên và ngày sinh giúp bạn khám phá mức độ hòa hợp của hai người. Phân tích thú vị theo công thức Dr. Love, dễ hiểu và đầy bất ngờ.">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+/* RESET & FIX INPUT */
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  background: #ffd1dc;
+  color: #000;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 30px 20px;
+  text-align: center;
+}
+
+/* TEXT */
+h1 {
+  font-size: 26px;
+  margin-bottom: 12px;
+}
+
+.intro {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 25px;
+}
+
+.stars {
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+/* FORM */
+.form-wrapper {
+  background: #ffe6ec;
+  border: 2px solid #ff9fb5;
+  padding: 25px;
+  border-radius: 10px;
+}
+
+.form-title {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* INPUT ROW */
+.input-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+.input-box {
+  background: #fff;
+  padding: 10px;
+  border: 2px solid #ff9fb5;
+  border-radius: 8px;
+  width: 260px;
+}
+
+.input-box label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+.input-box input {
+  display: block;
+  width: 100%;
+  height: 32px;
+  padding: 0 8px;
+  font-size: 14px;
+  line-height: 32px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  outline: none;
+}
+
+.heart {
+  font-size: 32px;
+}
+
+/* BUTTON */
+button {
+  margin-top: 20px;
+  padding: 8px 22px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* RESULT */
+.result {
+  margin-top: 30px;
+  background: #fff;
+  border: 2px solid #ff9fb5;
+  padding: 22px;
+  display: none;
+  text-align: left;
+}
+
+.percent {
+  font-size: 34px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.desc {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.site-header {
+  width: 100%;
+  padding: 15px 20px;
+  display: flex;
+  align-items: center;
+}
+
+.logo-link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.site-logo {
+  height: 44px;       /* chỉnh cao thấp logo */
+  width: auto;
+  display: block;
+}
+
+</style>
+</head>
+
+<body>
+<header class="site-header">
+  <a href="https://boitinhyeu.net" class="logo-link">
+    <img 
+      src="https://boitinhyeu.vn/img/boitinhyeu-vn-logo.svg" 
+      alt="Boitinhyeu.net logo"
+      class="site-logo"
+    >
+  </a>
+</header>
+
+<div class="container">
+
+
+  <h1>Bói tình yêu theo tên – Kiểm tra độ hợp nhau của hai bạn</h1>
+
+  <div class="intro">
+    Chúng ta đều biết rằng một cái tên có thể nói lên rất nhiều điều về một người.<br>
+    Tên không được chọn ngẫu nhiên, mà luôn mang trong mình những ý nghĩa nhất định.<br>
+    Dr. Love hiểu điều đó và đã xây dựng nên một công thức đặc biệt dành cho những người đang yêu.<br><br>
+    Nếu bạn đang tò mò về mức độ hòa hợp giữa hai người, hãy thử ngay công cụ bói tình yêu này!
+  </div>
+
+  <div class="stars">*****</div>
+
+  <div class="form-wrapper">
+    <div class="form-title">
+      Mời bạn điền họ và tên (đầy đủ dấu) vào 2 ô dưới:
+    </div>
+
+    <div class="input-row">
+      <div class="input-box">
+        <label>Tên bạn:</label>
+        <input id="name1" placeholder="Nhập tên bạn">
+      </div>
+
+      <div class="heart">❤️</div>
+
+      <div class="input-box">
+        <label>Tên người ấy:</label>
+        <input id="name2" placeholder="Nhập tên người ấy">
+      </div>
+    </div>
+
+    <button onclick="tinhDoHop()">Gửi đi</button>
+  </div>
+
+  <div class="result" id="result">
+    <div class="percent" id="percent">0%</div>
+    <div class="desc" id="desc"></div>
+  </div>
+
+</div>
+
+<script>
+// ======================
+// CORE LOGIC DR. LOVE
+// ======================
+function normalizeName(name) {
+  return name
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .toLowerCase()
+    .replace(/[^a-z]/g, "");
+}
+
+function nameToNumber(name) {
+  let sum = 0;
+  for (let c of name) {
+    sum += c.charCodeAt(0) - 96;
+  }
+  return sum;
+}
+
+function tinhDoHop() {
+  const name1 = document.getElementById("name1").value.trim();
+  const name2 = document.getElementById("name2").value.trim();
+
+  if (!name1 || !name2) {
+    alert("Vui lòng nhập đầy đủ họ và tên!");
+    return;
+  }
+
+  const n1 = nameToNumber(normalizeName(name1));
+  const n2 = nameToNumber(normalizeName(name2));
+
+  let finalPercent = (n1 * 7 + n2 * 5) % 101;
+  if (finalPercent < 55) finalPercent = 55;
+  if (finalPercent > 95) finalPercent = 95;
+
+  const percentEl = document.getElementById("percent");
+  const descEl = document.getElementById("desc");
+  const resultEl = document.getElementById("result");
+
+  resultEl.style.display = "block";
+  descEl.innerHTML = "Hệ thống của Dr. Love đang phân tích mức độ tương hợp của hai bạn...";
+
+  let current = 0;
+  percentEl.innerText = "0%";
+
+  const interval = setInterval(() => {
+    current++;
+    percentEl.innerText = current + "%";
+
+    if (current >= finalPercent) {
+      clearInterval(interval);
+      descEl.innerHTML = getResultContent(finalPercent);
+    }
+  }, 20);
+}
+
+// ======================
+// CONTENT KẾT QUẢ THEO %
+// ======================
+function getResultContent(percent) {
+
+  if (percent < 65) {
+    return `
+    
+    <p>Theo phân tích của <strong>Dr.Love</strong>, mối quan hệ này có <strong>sự thu hút ban đầu</strong>, nhưng nền tảng cảm xúc vẫn còn khá mong manh.<br>
+Hai bạn dễ bị ấn tượng bởi một vài điểm tốt của nhau, tuy nhiên <strong>sự khác biệt trong cách suy nghĩ, giao tiếp hoặc kỳ vọng</strong> có thể khiến cả hai cảm thấy “chưa thật sự được thấu hiểu”.</p>
+
+<p>Ở giai đoạn này, mối quan hệ dễ rơi vào trạng thái:</p>
+<ul>
+  <li>Có cảm xúc nhưng <strong>chưa đủ tin tưởng</strong></li>
+  <li>Dễ vui, nhưng cũng <strong>dễ buồn vì hiểu lầm</strong></li>
+  <li>Muốn tiến xa, nhưng còn <strong>thiếu sự kiên nhẫn</strong></li>
+</ul>
+
+<p>👉 <strong>Lời khuyên từ Dr.Love:</strong></p>
+<ul>
+  <li>Học cách <strong>lắng nghe nhiều hơn là phản ứng</strong></li>
+  <li>Đừng vội so sánh hay đòi hỏi đối phương phải thay đổi ngay</li>
+  <li>Dành thời gian trau dồi bản thân, <strong>ổn định cảm xúc và suy nghĩ chín chắn hơn</strong></li>
+  <li>Tập trung <strong>học tập, làm việc và phát triển giá trị cá nhân</strong> để tạo nền tảng vững vàng cho tình yêu</li>
+</ul>
+
+<p>Tình yêu lúc này giống như <strong>một mầm cây non</strong> — khi bạn càng trưởng thành và hoàn thiện bản thân, mối quan hệ này càng có cơ hội lớn lên và đơm hoa kết trái.</p>
+
+<p>Bạn có thể khám phá thêm <strong>khả năng tiến triển trong tương lai</strong> thông qua phần <strong>bói mệnh phong thủy</strong> để hiểu rõ hơn về sự hòa hợp lâu dài.</p>
+
+    `;
+  }
+
+  if (percent < 75) {
+    return `
+    <p>Theo nhận định của <strong>Dr.Love</strong>, hai bạn có <strong>mức độ hòa hợp khá tốt</strong>, đặc biệt là ở cảm xúc và sự đồng cảm.<br>
+Hai người dễ cảm nhận được tâm trạng của nhau, biết quan tâm đúng lúc và có khả năng xây dựng <strong>niềm tin nếu mối quan hệ được trân trọng</strong>.</p>
+
+<p>Tuy nhiên, đây chưa phải là mức độ “an tâm tuyệt đối”. Nếu thiếu sự nỗ lực và phát triển bản thân, mối quan hệ có thể:</p>
+<ul>
+  <li>Trở nên nhạt dần vì thiếu sự mới mẻ</li>
+  <li>Gặp trục trặc khi cả hai quá bận rộn hoặc ít chia sẻ</li>
+</ul>
+
+<p>👉 <strong>Lời khuyên từ Dr.Love:</strong></p>
+<ul>
+  <li>Chủ động tạo ra <strong>những khoảnh khắc nhỏ nhưng ý nghĩa</strong></li>
+  <li>Không ngừng <strong>cải thiện bản thân, nâng cao tư duy và cảm xúc</strong></li>
+  <li>Chăm chỉ học tập, làm việc và theo đuổi mục tiêu riêng để trở thành phiên bản tốt hơn</li>
+  <li>Luôn nhớ rằng: yêu nhau là <strong>cùng nhau trưởng thành</strong>, không chỉ dựa vào cảm xúc ban đầu</li>
+</ul>
+
+<p>Khi cả hai đều nỗ lực phát triển bản thân, mối quan hệ này có thể mang lại <strong>nhiều niềm vui, sự ấm áp và cảm xúc tích cực lâu dài</strong>.</p>
+
+<p>Để hiểu rõ hơn con đường phía trước, bạn có thể tiếp tục theo dõi tại phần <strong>bói mệnh phong thủy</strong>.</p>
+
+    `;
+  }
+
+  if (percent < 85) {
+    return `
+    <p>Theo đánh giá của <strong>Dr.Love</strong>, hai bạn có <strong>sự tương hợp rõ ràng và khá ổn định</strong>.<br>
+Sự kết nối giữa hai cái tên cho thấy cả hai dễ chia sẻ, dễ cảm thông và thường cảm thấy thoải mái khi ở bên nhau.</p>
+
+<p>Trong mối quan hệ này:</p>
+<ul>
+  <li>Hai bạn có xu hướng <strong>bổ trợ cho nhau</strong></li>
+  <li>Dễ vượt qua mâu thuẫn nếu chịu ngồi lại nói chuyện</li>
+  <li>Có khả năng xây dựng mối quan hệ lâu dài nếu cùng phát triển</li>
+</ul>
+
+<p>👉 <strong>Lời khuyên từ Dr.Love:</strong></p>
+<ul>
+  <li>Tiếp tục <strong>duy trì tinh thần học hỏi và hoàn thiện bản thân</strong></li>
+  <li>Chăm chỉ làm việc, xây dựng tương lai để tạo sự an tâm cho cả hai</li>
+  <li>Đừng để sự quen thuộc làm mất đi sự lãng mạn và tôn trọng</li>
+  <li>Cùng nhau đặt ra <strong>mục tiêu chung</strong> để mối quan hệ ngày càng bền chặt</li>
+</ul>
+
+<p>Đây là mối quan hệ có <strong>nhiều cơ hội tiến xa</strong>, đặc biệt khi cả hai không ngừng nâng cấp chính mình.</p>
+
+<p>Bạn có thể khám phá thêm những khía cạnh sâu hơn của mối quan hệ này tại mục <strong>bói mệnh phong thủy</strong>.</p>
+    `;
+  }
+
+  return `
+  <p><strong>Dr.Love</strong> đánh giá đây là <strong>một sự kết hợp rất đáng quý</strong>.<br>
+Sự hòa hợp giữa hai cái tên cho thấy mức độ gắn bó cao, dễ tạo cảm giác <strong>an toàn, tin tưởng và yên tâm</strong> khi ở bên nhau.</p>
+
+<p>Hai bạn không chỉ hợp về cảm xúc mà còn có khả năng:</p>
+<ul>
+  <li>Đồng hành tốt trong học tập, công việc và cuộc sống</li>
+  <li>Cùng nhau vượt qua thử thách và áp lực thực tế</li>
+  <li>Xây dựng tương lai dựa trên sự nỗ lực và trưởng thành của cả hai</li>
+</ul>
+
+<p>👉 <strong>Lời khuyên từ Dr.Love:</strong></p>
+<ul>
+  <li>Tiếp tục <strong>trau dồi kiến thức, kỹ năng và giá trị sống</strong></li>
+  <li>Chăm chỉ làm việc, xây dựng sự nghiệp để củng cố nền tảng lâu dài</li>
+  <li>Luôn giữ sự chân thành, tôn trọng và đồng hành cùng nhau</li>
+</ul>
+
+<p>Đây là <strong>mối quan hệ hiếm gặp</strong>, có tiềm năng phát triển bền vững và lâu dài khi cả hai cùng không ngừng hoàn thiện bản thân.</p>
+
+<p>Để hiểu rõ hơn về <strong>tương lai dài hạn</strong> của mối quan hệ này, bạn có thể xem tiếp tại phần <strong>bói mệnh phong thủy</strong>.</p>
+  `;
+}
+
+</script>
+
+</body>
+</html>
