@@ -132,16 +132,18 @@ body {
 
 /* Heart shake animation */
 @keyframes heartShake {
-  0%   { transform: scale(1) rotate(0deg); }
-  20%  { transform: scale(1.1) rotate(-8deg); }
-  40%  { transform: scale(1.1) rotate(8deg); }
-  60%  { transform: scale(1.05) rotate(-5deg); }
-  80%  { transform: scale(1.05) rotate(5deg); }
-  100% { transform: scale(1) rotate(0deg); }
+  0%   { transform: scale(1) rotate(0); }
+  10%  { transform: scale(1.15) rotate(-10deg); }
+  20%  { transform: scale(1.2) rotate(10deg); }
+  30%  { transform: scale(1.15) rotate(-10deg); }
+  40%  { transform: scale(1.2) rotate(10deg); }
+  55%  { transform: scale(1.1) rotate(0); }
+  70%  { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }
 
 .heart.shake {
-  animation: heartShake 0.6s ease;
+  animation: heartShake 0.6s cubic-bezier(.36,.07,.19,.97);
 }
 
 /* ===== BUTTON ===== */
@@ -307,6 +309,15 @@ function tinhDoHop() {
   resultEl.style.display = "block";
   descEl.innerHTML = "Hệ thống của Dr. Love đang phân tích mức độ tương hợp của hai bạn...";
 
+  // 🔥 TỰ ĐỘNG CUỘN XUỐNG KẾT QUẢ (MOBILE FRIENDLY)
+setTimeout(() => {
+  resultEl.scrollIntoView({
+    behavior: "smooth",
+    block: "start"
+  });
+}, 200);
+
+
   let current = 0;
   percentEl.innerText = "0%";
 
@@ -433,6 +444,7 @@ Sự hòa hợp giữa hai cái tên cho thấy mức độ gắn bó cao, dễ 
 
 </body>
 </html>
+
 
 
 
