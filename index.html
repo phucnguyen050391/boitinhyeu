@@ -2,6 +2,7 @@
 <html lang="vi">
 <head>
 <meta charset="UTF-8">
+
 <link rel="icon" type="image/png" href="/assets/favicon.png">
 <link rel="apple-touch-icon" href="/assets/favicon.png">
 
@@ -28,12 +29,25 @@ body {
 
 /* ===== HEADER ===== */
 .site-header {
-  padding-top: 22px;
+  width: 100%;
+  padding-top: 26px;
+  padding-bottom: 6px;
   display: flex;
   justify-content: center;
 }
 
-.site-logo { height: 56px; }
+.logo-link {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+}
+
+.site-logo {
+  height: 56px;
+  width: auto;
+  display: block;
+}
 
 /* ===== TITLE ===== */
 .main-title {
@@ -41,110 +55,126 @@ body {
   font-weight: 800;
   text-transform: uppercase;
   line-height: 1.3;
+  margin-bottom: 14px;
 }
 
 .main-title span {
   display: block;
   font-size: 22px;
+  font-weight: 600;
   margin-top: 6px;
 }
 
-/* ===== INTRO ===== */
+/* TEXT */
 .intro {
   font-size: 15px;
   line-height: 1.6;
-  margin: 20px 0;
+  margin-bottom: 25px;
 }
 
-.stars { margin: 12px 0; }
+.stars {
+  font-weight: bold;
+  margin: 15px 0;
+}
 
-/* ===== FORM ===== */
+/* FORM */
 .form-wrapper {
   background: #ffe6ec;
   border: 2px solid #ff9fb5;
   padding: 25px;
-  border-radius: 12px;
+  border-radius: 10px;
 }
 
+.form-title {
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+/* INPUT */
 .input-row {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  gap: 14px;
+  justify-content: center;
+  gap: 18px;
+  margin-top: 15px;
+  flex-wrap: wrap;
 }
 
 .input-box {
-  width: 100%;
-  max-width: 280px;
   background: #fff;
   padding: 10px;
   border: 2px solid #ff9fb5;
   border-radius: 8px;
+  width: 260px;
 }
 
 .input-box label {
-  font-weight: bold;
   display: block;
+  font-weight: bold;
   margin-bottom: 6px;
+  font-size: 14px;
 }
 
 .input-box input {
   width: 100%;
-  height: 34px;
+  height: 32px;
   padding: 0 8px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 /* ===== HEART ===== */
 .heart {
-  font-size: 34px;
-  margin: 8px 0;
-}
-
-@keyframes heartShake {
-  0%   { transform: scale(1) rotate(0); }
-  20%  { transform: scale(1.3) rotate(-15deg); }
-  40%  { transform: scale(1.4) rotate(15deg); }
-  60%  { transform: scale(1.3) rotate(-10deg); }
-  80%  { transform: scale(1.2) rotate(10deg); }
-  100% { transform: scale(1); }
-}
-
-.heart.shake {
-  animation: heartShake 0.7s ease;
+  font-size: 32px;
+  margin: 6px 0;
 }
 
 /* ===== BUTTON ===== */
 .submit-btn {
   margin-top: 22px;
-  padding: 12px 42px;
+  background: linear-gradient(135deg, #ff5f9e, #ff7abf);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 12px 38px;
   font-size: 16px;
   font-weight: 700;
-  border-radius: 12px;
-  border: none;
-  color: #fff;
-  background: linear-gradient(135deg,#ff5f9e,#ff7abf);
-  box-shadow: 0 8px 18px rgba(255,95,158,.45);
+  letter-spacing: 1px;
   cursor: pointer;
 }
 
-/* ===== RESULT ===== */
-#result-anchor {
-  scroll-margin-top: 140px;
-}
-
+/* RESULT */
 .result {
-  display: none;
   margin-top: 30px;
   background: #fff;
   border: 2px solid #ff9fb5;
   padding: 22px;
+  display: none;
   text-align: left;
 }
 
+#result-anchor {
+  scroll-margin-top: 220px;
+}
+
 .percent {
-  font-size: 36px;
+  font-size: 34px;
   font-weight: bold;
+  margin-bottom: 10px;
   text-align: center;
+}
+
+.desc {
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .main-title { font-size: 24px; }
+  .main-title span { font-size: 18px; }
+  .input-row { flex-direction: column; }
 }
 </style>
 </head>
@@ -152,48 +182,52 @@ body {
 <body>
 
 <header class="site-header">
-  <img src="https://boitinhyeu.net/assets/logo.png" class="site-logo">
+  <a href="https://boitinhyeu.net" class="logo-link">
+    <img src="https://boitinhyeu.net/assets/logo.png" class="site-logo" alt="Boitinhyeu.net">
+  </a>
 </header>
 
 <div class="container">
+  <h1 class="main-title">
+    BÓI TÌNH YÊU THEO TÊN
+    <span>KIỂM TRA ĐỘ HỢP NHAU CỦA HAI BẠN</span>
+  </h1>
 
-<h1 class="main-title">
-  BÓI TÌNH YÊU THEO TÊN
-  <span>KIỂM TRA ĐỘ HỢP NHAU CỦA HAI BẠN</span>
-</h1>
-
-<div class="intro">
-  Chúng ta đều biết rằng một cái tên có thể nói lên rất nhiều điều về một người.<br>
-  Nếu bạn đang tò mò về mức độ hòa hợp giữa hai người, hãy thử ngay!
-</div>
-
-<div class="stars">*****</div>
-
-<div class="form-wrapper">
-  <div class="input-row">
-    <div class="input-box">
-      <label>Tên bạn:</label>
-      <input id="name1">
-    </div>
-
-    <div class="heart" id="heart">❤️</div>
-
-    <div class="input-box">
-      <label>Tên người ấy:</label>
-      <input id="name2">
-    </div>
+  <div class="intro">
+    Chúng ta đều biết rằng một cái tên có thể nói lên rất nhiều điều về một người.<br>
+    Tên không được chọn ngẫu nhiên, mà luôn mang trong mình những ý nghĩa nhất định.<br>
+    Dr. Love hiểu điều đó và đã xây dựng nên một công thức đặc biệt dành cho những người đang yêu.<br><br>
+    Nếu bạn đang tò mò về mức độ hòa hợp giữa hai người, hãy thử ngay công cụ bói tình yêu này!
   </div>
 
-  <button class="submit-btn" onclick="tinhDoHop()">GỬI ĐI</button>
-</div>
+  <div class="stars">*****</div>
 
-<div id="result-anchor"></div>
+  <div class="form-wrapper">
+    <div class="form-title">Mời bạn điền họ và tên (đầy đủ dấu) vào 2 ô dưới:</div>
 
-<div class="result" id="result">
-  <div class="percent" id="percent">0%</div>
-  <div id="desc"></div>
-</div>
+    <div class="input-row">
+      <div class="input-box">
+        <label>Tên bạn:</label>
+        <input id="name1" placeholder="Nhập tên bạn">
+      </div>
 
+      <div class="heart">❤️</div>
+
+      <div class="input-box">
+        <label>Tên người ấy:</label>
+        <input id="name2" placeholder="Nhập tên người ấy">
+      </div>
+    </div>
+
+    <button class="submit-btn" onclick="tinhDoHop()">GỬI ĐI</button>
+  </div>
+
+  <div id="result-anchor"></div>
+
+  <div class="result" id="result">
+    <div class="percent" id="percent">0%</div>
+    <div class="desc" id="desc"></div>
+  </div>
 </div>
 
 <script>
@@ -205,38 +239,48 @@ function normalizeName(name) {
 }
 
 function nameToNumber(name) {
-  return [...name].reduce((s,c)=>s+(c.charCodeAt(0)-96),0);
+  let sum = 0;
+  for (let c of name) sum += c.charCodeAt(0) - 96;
+  return sum;
 }
 
 function tinhDoHop() {
-  const n1 = document.getElementById("name1").value.trim();
-  const n2 = document.getElementById("name2").value.trim();
-  if (!n1 || !n2) return alert("Nhập đủ tên!");
+  const name1 = document.getElementById("name1").value.trim();
+  const name2 = document.getElementById("name2").value.trim();
 
-  const heart = document.getElementById("heart");
-  heart.classList.remove("shake");
-  void heart.offsetWidth;
-  heart.classList.add("shake");
+  if (!name1 || !name2) {
+    alert("Vui lòng nhập đầy đủ họ và tên!");
+    return;
+  }
 
-  const finalPercent = Math.max(55, Math.min(95,
-    (nameToNumber(normalizeName(n1))*7 + nameToNumber(normalizeName(n2))*5)%101
-  ));
+  const n1 = nameToNumber(normalizeName(name1));
+  const n2 = nameToNumber(normalizeName(name2));
 
-  const result = document.getElementById("result");
+  let finalPercent = (n1 * 7 + n2 * 5) % 101;
+  if (finalPercent < 55) finalPercent = 55;
+  if (finalPercent > 95) finalPercent = 95;
+
   const percentEl = document.getElementById("percent");
-  result.style.display = "block";
+  const descEl = document.getElementById("desc");
+  const resultEl = document.getElementById("result");
+
+  resultEl.style.display = "block";
   percentEl.innerText = "0%";
+  descEl.innerHTML = "Hệ thống của Dr. Love đang phân tích mức độ tương hợp của hai bạn...";
 
-  document.getElementById("result-anchor")
-    .scrollIntoView({behavior:"smooth", block:"start"});
+  document.getElementById("result-anchor").scrollIntoView({ behavior: "smooth" });
 
-  setTimeout(()=>{
-    let cur = 0;
-    const iv = setInterval(()=>{
-      percentEl.innerText = ++cur + "%";
-      if (cur >= finalPercent) clearInterval(iv);
-    },20);
-  },400);
+  setTimeout(() => {
+    let current = 0;
+    const interval = setInterval(() => {
+      current++;
+      percentEl.innerText = current + "%";
+      if (current >= finalPercent) {
+        clearInterval(interval);
+        descEl.innerHTML = getResultContent(finalPercent);
+      }
+    }, 20);
+  }, 400);
 }
 
 // ======================
@@ -352,6 +396,7 @@ Sự hòa hợp giữa hai cái tên cho thấy mức độ gắn bó cao, dễ 
 
 </body>
 </html>
+
 
 
 
