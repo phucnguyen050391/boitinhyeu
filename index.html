@@ -132,9 +132,10 @@ button {
   line-height: 1.6;
 }
 
+<style>
 .site-header {
   width: 100%;
-  padding: 15px 20px;
+  padding: 16px 24px;
   display: flex;
   align-items: center;
 }
@@ -146,11 +147,17 @@ button {
 }
 
 .site-logo {
-  height: 44px;       /* chỉnh cao thấp logo */
+  height: 56px;       /* logo to hơn, cân đối */
   width: auto;
   display: block;
 }
 
+/* Mobile tối ưu */
+@media (max-width: 768px) {
+  .site-logo {
+    height: 44px;
+  }
+}
 </style>
 </head>
 
@@ -164,6 +171,7 @@ button {
     >
   </a>
 </header>
+
 
 <div class="container">
 
@@ -378,4 +386,5 @@ Sự hòa hợp giữa hai cái tên cho thấy mức độ gắn bó cao, dễ 
 
 </body>
 </html>
+
 
