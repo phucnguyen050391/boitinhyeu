@@ -332,9 +332,24 @@ setTimeout(() => {
     current++;
     percentEl.innerText = current + "%";
     if (current >= finalPercent) {
-      clearInterval(interval);
-      descEl.innerHTML = getResultContent(finalPercent);
-    }
+  clearInterval(interval);
+  descEl.innerHTML = getResultContent(finalPercent);
+
+
+  setTimeout(() => {
+    const offset = 220; 
+    const y =
+      resultEl.getBoundingClientRect().top +
+      window.pageYOffset -
+      offset;
+
+    window.scrollTo({
+      top: y,
+      behavior: "smooth"
+    });
+  }, 300); // 
+}
+
   }, 20);
 }
 
@@ -451,6 +466,7 @@ Sự hòa hợp giữa hai cái tên cho thấy mức độ gắn bó cao, dễ 
 
 </body>
 </html>
+
 
 
 
