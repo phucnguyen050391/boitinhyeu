@@ -132,32 +132,57 @@ button {
   line-height: 1.6;
 }
 
-<style>
 .site-header {
   width: 100%;
-  padding: 16px 24px;
+  padding-top: 36px;     /* khoảng trống phía trên */
+  padding-bottom: 16px;
   display: flex;
-  align-items: center;
+  justify-content: center;
 }
 
 .logo-link {
-  display: inline-flex;
+  display: flex;
   align-items: center;
+  gap: 10px;
   text-decoration: none;
 }
 
+/* Logo */
 .site-logo {
-  height: 56px;       /* logo to hơn, cân đối */
+  height: 56px;
   width: auto;
   display: block;
 }
 
+/* Text bên cạnh logo (nếu có) */
+.site-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: #000;
+  line-height: 1.1;
+}
+
+.site-tagline {
+  font-size: 12px;
+  color: #444;
+  letter-spacing: 0.5px;
+}
+
 /* Mobile tối ưu */
 @media (max-width: 768px) {
+  .site-header {
+    padding-top: 28px;
+  }
+
   .site-logo {
     height: 44px;
   }
+
+  .site-title {
+    font-size: 18px;
+  }
 }
+
 </style>
 </head>
 
@@ -386,5 +411,6 @@ Sự hòa hợp giữa hai cái tên cho thấy mức độ gắn bó cao, dễ 
 
 </body>
 </html>
+
 
 
