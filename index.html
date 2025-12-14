@@ -309,13 +309,20 @@ function tinhDoHop() {
   resultEl.style.display = "block";
   descEl.innerHTML = "Hệ thống của Dr. Love đang phân tích mức độ tương hợp của hai bạn...";
 
-  // 🔥 TỰ ĐỘNG CUỘN XUỐNG KẾT QUẢ (MOBILE FRIENDLY)
+  // AUTO SCROLL LÊN CAO HƠN (CÓ OFFSET)
 setTimeout(() => {
-  resultEl.scrollIntoView({
-    behavior: "smooth",
-    block: "start"
+  const yOffset = -120; // chỉnh số này (âm = lên cao hơn)
+  const y =
+    resultEl.getBoundingClientRect().top +
+    window.pageYOffset +
+    yOffset;
+
+  window.scrollTo({
+    top: y,
+    behavior: "smooth"
   });
 }, 200);
+
 
 
   let current = 0;
@@ -444,6 +451,7 @@ Sự hòa hợp giữa hai cái tên cho thấy mức độ gắn bó cao, dễ 
 
 </body>
 </html>
+
 
 
 
