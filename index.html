@@ -180,6 +180,9 @@ body {
   display: none;
   text-align: left;
 }
+#result-anchor {
+  scroll-margin-top: 220px; /* chuẩn cho mobile */
+}
 
 .percent {
   font-size: 34px;
@@ -256,7 +259,7 @@ body {
 
     <button class="submit-btn" onclick="tinhDoHop()">GỬI ĐI</button>
   </div>
-
+  <div id="result-anchor"></div>
   <div class="result" id="result">
     <div class="percent" id="percent">0%</div>
     <div class="desc" id="desc"></div>
@@ -287,14 +290,6 @@ function tinhDoHop() {
     return;
   }
 
-  // ❤️ Heart shake
-  const heart = document.querySelector(".heart");
-  if (heart) {
-    heart.classList.remove("shake");
-    void heart.offsetWidth;
-    heart.classList.add("shake");
-  }
-
   const n1 = nameToNumber(normalizeName(name1));
   const n2 = nameToNumber(normalizeName(name2));
 
@@ -306,22 +301,32 @@ function tinhDoHop() {
   const descEl = document.getElementById("desc");
   const resultEl = document.getElementById("result");
 
+  // reset trạng thái
   resultEl.style.display = "block";
+  percentEl.innerText = "0%";
   descEl.innerHTML = "Hệ thống của Dr. Love đang phân tích mức độ tương hợp của hai bạn...";
 
-  // AUTO SCROLL LÊN CAO HƠN (CÓ OFFSET)
-setTimeout(() => {
-  const yOffset = -220; // chỉnh số này (âm = lên cao hơn)
-  const y =
-    resultEl.getBoundingClientRect().top +
-    window.pageYOffset +
-    yOffset;
+  // ✅ 1. TRƯỢT XUỐNG TRƯỚC
+  document
+    .getElementById("result-anchor")
+    .scrollIntoView({ behavior: "smooth", block: "start" });
 
-  window.scrollTo({
-    top: y,
-    behavior: "smooth"
-  });
-}, 200);
+  // ✅ 2. ĐỢI TRƯỢT XONG RỒI MỚI CHẠY %
+  setTimeout(() => {
+    let current = 0;
+
+    const interval = setInterval(() => {
+      current++;
+      percentEl.innerText = current + "%";
+
+      if (current >= finalPercent) {
+        clearInterval(interval);
+        descEl.innerHTML = getResultContent(finalPercent);
+      }
+    }, 20);
+
+  }, 450); // ⏱ delay này là "đợi scroll xong"
+}
 
 
 
@@ -466,6 +471,7 @@ Sự hòa hợp giữa hai cái tên cho thấy mức độ gắn bó cao, dễ 
 
 </body>
 </html>
+
 
 
 
