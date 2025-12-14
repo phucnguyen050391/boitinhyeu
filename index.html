@@ -124,7 +124,25 @@ body {
   border-radius: 4px;
 }
 
-.heart { font-size: 32px; }
+/* ===== HEART ===== */
+.heart {
+  font-size: 32px;
+  margin: 6px 0;
+}
+
+/* Heart shake animation */
+@keyframes heartShake {
+  0%   { transform: scale(1) rotate(0deg); }
+  20%  { transform: scale(1.1) rotate(-8deg); }
+  40%  { transform: scale(1.1) rotate(8deg); }
+  60%  { transform: scale(1.05) rotate(-5deg); }
+  80%  { transform: scale(1.05) rotate(5deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+
+.heart.shake {
+  animation: heartShake 0.6s ease;
+}
 
 /* ===== BUTTON ===== */
 .submit-btn {
@@ -173,12 +191,22 @@ body {
   line-height: 1.6;
 }
 
-/* MOBILE */
+/* ===== MOBILE FIX ===== */
 @media (max-width: 768px) {
   .site-header { padding-top: 18px; }
   .site-logo { height: 50px; }
+
   .main-title { font-size: 24px; }
   .main-title span { font-size: 18px; }
+
+  .input-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .heart {
+    font-size: 28px;
+  }
 }
 </style>
 </head>
@@ -193,7 +221,6 @@ body {
 
 <div class="container">
 
-  <!-- 🔥 TITLE ĐÃ SỬA -->
   <h1 class="main-title">
     BÓI TÌNH YÊU THEO TÊN
     <span>KIỂM TRA ĐỘ HỢP NHAU CỦA HAI BẠN</span>
@@ -225,7 +252,6 @@ body {
       </div>
     </div>
 
-    <!-- 🔥 BUTTON ĐÃ SỬA -->
     <button class="submit-btn" onclick="tinhDoHop()">GỬI ĐI</button>
   </div>
 
@@ -237,12 +263,8 @@ body {
 </div>
 
 <script>
-// ======================
-// CORE LOGIC DR. LOVE
-// ======================
 function normalizeName(name) {
-  return name
-    .normalize("NFD")
+  return name.normalize("NFD")
     .replace(/[\u0300-\u036f]/g, "")
     .toLowerCase()
     .replace(/[^a-z]/g, "");
@@ -250,9 +272,7 @@ function normalizeName(name) {
 
 function nameToNumber(name) {
   let sum = 0;
-  for (let c of name) {
-    sum += c.charCodeAt(0) - 96;
-  }
+  for (let c of name) sum += c.charCodeAt(0) - 96;
   return sum;
 }
 
@@ -263,6 +283,14 @@ function tinhDoHop() {
   if (!name1 || !name2) {
     alert("Vui lòng nhập đầy đủ họ và tên!");
     return;
+  }
+
+  // ❤️ Heart shake
+  const heart = document.querySelector(".heart");
+  if (heart) {
+    heart.classList.remove("shake");
+    void heart.offsetWidth;
+    heart.classList.add("shake");
   }
 
   const n1 = nameToNumber(normalizeName(name1));
@@ -285,7 +313,6 @@ function tinhDoHop() {
   const interval = setInterval(() => {
     current++;
     percentEl.innerText = current + "%";
-
     if (current >= finalPercent) {
       clearInterval(interval);
       descEl.innerHTML = getResultContent(finalPercent);
@@ -406,6 +433,7 @@ Sự hòa hợp giữa hai cái tên cho thấy mức độ gắn bó cao, dễ 
 
 </body>
 </html>
+
 
 
 
