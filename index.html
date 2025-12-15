@@ -50,22 +50,33 @@ body {
   display: block;
 }
 
-/* ===== TITLE (LOCK 2 LINES - RESPONSIVE) ===== */
+/* ===== TITLE (2 LINES – RESPONSIVE – MOBILE SAFE) ===== */
 .main-title {
-  font-weight: 800;
-  text-transform: uppercase;
   text-align: center;
-  line-height: 1.25;
+  text-transform: uppercase;
   margin-bottom: 12px;
-
-  /* tự co giãn theo màn hình */
-  font-size: clamp(18px, 4.6vw, 32px);
+  line-height: 1.25;
 }
 
+/* dòng nào cũng KHÓA 1 dòng */
 .main-title .line {
   display: block;
-  white-space: nowrap; /* không cho vỡ thành 3-4 dòng */
+  white-space: nowrap;
 }
+
+/* 🔥 DÒNG CHÍNH – NỔI BẬT */
+.main-title .line-main {
+  font-weight: 800;
+  font-size: clamp(20px, 5.2vw, 34px);
+}
+
+/* 🔹 DÒNG PHỤ – NHỎ HƠN */
+.main-title .line-sub {
+  font-weight: 700;
+  font-size: clamp(15px, 4vw, 22px);
+  margin-top: 4px;
+}
+
 
 
 /* TEXT */
@@ -241,9 +252,9 @@ body {
 </header>
 
 <div class="container">
- <h1 class="main-title">
-  <span class="line">BÓI TÌNH YÊU THEO TÊN</span>
-  <span class="line">KIỂM TRA ĐIỂM TÌNH DUYÊN CỦA 2 BẠN</span>
+<h1 class="main-title">
+  <span class="line line-main">BÓI TÌNH YÊU THEO TÊN</span>
+  <span class="line line-sub">KIỂM TRA ĐIỂM TÌNH DUYÊN CỦA HAI BẠN</span>
 </h1>
 
   <div class="intro">
@@ -449,6 +460,7 @@ Sự hòa hợp giữa hai cái tên cho thấy mức độ gắn bó cao, dễ 
 
 </body>
 </html>
+
 
 
 
