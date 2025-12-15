@@ -50,21 +50,23 @@ body {
   display: block;
 }
 
-/* ===== TITLE ===== */
+/* ===== TITLE (LOCK 2 LINES - RESPONSIVE) ===== */
 .main-title {
-  font-size: 32px;
   font-weight: 800;
   text-transform: uppercase;
-  line-height: 1.3;
-  margin-bottom: 14px;
+  text-align: center;
+  line-height: 1.25;
+  margin-bottom: 12px;
+
+  /* tự co giãn theo màn hình */
+  font-size: clamp(18px, 4.6vw, 32px);
 }
 
-.main-title span {
+.main-title .line {
   display: block;
-  font-size: 22px;
-  font-weight: 600;
-  margin-top: 6px;
+  white-space: nowrap; /* không cho vỡ thành 3-4 dòng */
 }
+
 
 /* TEXT */
 .intro {
@@ -239,10 +241,10 @@ body {
 </header>
 
 <div class="container">
-  <h1 class="main-title">
-    BÓI TÌNH YÊU THEO TÊN
-    <span>KIỂM TRA ĐIỂM TÌNH DUYÊN CỦA HAI BẠN</span>
-  </h1>
+ <h1 class="main-title">
+  <span class="line">BÓI TÌNH YÊU THEO TÊN</span>
+  <span class="line">KIỂM TRA ĐIỂM TÌNH DUYÊN CỦA 2 BẠN</span>
+</h1>
 
   <div class="intro">
     Chúng ta đều biết rằng một cái tên có thể nói lên rất nhiều điều về một người.<br>
@@ -447,6 +449,7 @@ Sự hòa hợp giữa hai cái tên cho thấy mức độ gắn bó cao, dễ 
 
 </body>
 </html>
+
 
 
 
