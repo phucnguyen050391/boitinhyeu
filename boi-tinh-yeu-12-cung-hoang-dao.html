@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Bói tình yêu 12 cung hoàng đạo – Khám phá sự tương hợp giữa các cung hoàng đạo theo nguyên tố Lửa, Đất, Khí, Nước. Biểu đồ radar chi tiết, phân tích Dr.Love chuyên sâu." />
+  <meta name="keywords" content="bói tình yêu 12 cung hoàng đạo, tương hợp 12 cung hoàng đạo, tình yêu các cung hoàng đạo, bói cung hoàng đạo, độ hợp cung hoàng đạo" />
+  <title>Bói Tình Yêu 12 Cung Hoàng Đạo – Cặp Đôi Có Hợp Nhau? | BoiTinhYeu</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Quicksand:wght@400;600;700&display=swap" rel="stylesheet" />
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="css/zodiac.css" />
+
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💗</text></svg>" />
+  <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💗</text></svg>" />
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+<!-- Floating hearts background -->
+<div class="floating-hearts" aria-hidden="true"></div>
+
+<!-- ===================================================
+     HEADER
+     =================================================== -->
+<header>
+  <a href="index.html" class="header-inner" title="Quay về trang chủ">
+    <div class="site-logo">
+      <span class="logo-icon">💗</span>
+      <span class="site-name">BoiTinhYeu.net</span>
+    </div>
+    <p class="site-tagline">✨ Khám phá bí ẩn tình duyên qua từng chữ tên ✨</p>
+  </a>
+  <nav class="global-nav" aria-label="Menu điều hướng">
+      <a href="index.html" class="nav-pill">💕 Bói Theo Tên</a>
+      <a href="boi-tinh-yeu-12-cung-hoang-dao.html" class="nav-pill active">♈ Cung Hoàng Đạo</a>
+      <a href="boi-tinh-yeu-bai-tarot.html" class="nav-pill">🃏 Bài Tarot</a>
+      <a href="boi-tinh-yeu-than-so-hoc.html" class="nav-pill">🌙 Thần Số Học</a>
+      <a href="boi-tinh-yeu-12-con-giap.html" class="nav-pill">🐉 12 Con Giáp</a>
+    </nav>
+</header>
+
+<!-- ===================================================
+     MAIN
+     =================================================== -->
+<main>
+
+  <!-- TOOL SECTION -->
+  <section class="tool-section" aria-label="Công cụ bói tình yêu 12 cung hoàng đạo">
+    <h1 class="tool-title">🔯 Bói Tình Yêu 12 Cung Hoàng Đạo</h1>
+    <p class="tool-subtitle">Chọn cung hoàng đạo của hai người và khám phá sự tương hợp ngay bây giờ</p>
+
+    <div class="zodiac-selectors">
+
+      <!-- CHÀNG -->
+      <div class="zodiac-group">
+        <label class="group-label">♂ Cung của Chàng</label>
+        <div class="zodiac-grid" id="gridHim" role="group" aria-label="Chọn cung hoàng đạo cho Chàng">
+          <!-- JS will inject buttons here -->
+        </div>
+      </div>
+
+      <!-- NÀNG -->
+      <div class="zodiac-group">
+        <label class="group-label">♀ Cung của Nàng</label>
+        <div class="zodiac-grid" id="gridHer" role="group" aria-label="Chọn cung hoàng đạo cho Nàng">
+          <!-- JS will inject buttons here -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- CTA Button -->
+    <button class="btn-primary" id="calcBtn" type="button">
+      🔮 Giải Mã Tình Yêu
+    </button>
+
+    <!-- RESULT SECTION -->
+    <div id="resultSection" aria-live="polite">
+
+      <!-- Score Display -->
+      <div class="score-display">
+        <p class="score-pair">
+          <span id="pairHim" class="pair-sign">—</span>
+          <span style="color:var(--text-light);margin:0 0.5rem">💞</span>
+          <span id="pairHer" class="pair-sign">—</span>
+        </p>
+        <div class="score-number-wrap">
+          <span class="score-number" id="scoreNumber">0</span><span class="score-unit">%</span>
+        </div>
+        <p class="score-label">Chỉ số tương hợp tổng hợp</p>
+        <div class="element-tag" id="elementTag">—</div>
+      </div>
+
+      <!-- Radar Chart (trên cùng) -->
+      <div class="radar-card">
+        <p class="radar-title">📊 Biểu đồ tương hợp chi tiết</p>
+        <div class="chart-wrap">
+          <canvas id="radarChart" width="300" height="300" aria-label="Biểu đồ radar độ tương hợp"></canvas>
+        </div>
+      </div>
+
+      <!-- Dr.Love Message (ở giữa) -->
+      <div class="drlove-message">
+        <div class="drlove-header">
+          <span class="drlove-avatar">🧑‍⚕️</span>
+          <div>
+            <div class="drlove-name">Dr.Love</div>
+            <div class="drlove-title">Chuyên gia phân tích tình yêu & tâm linh</div>
+          </div>
+        </div>
+        <div class="drlove-text" id="drLoveText"></div>
+      </div>
+
+      <!-- CTA (dưới cùng) -->
+      <div style="text-align:center;margin-top:0.4rem;margin-bottom:0.5rem">
+        <a href="boi-tinh-yeu-bai-tarot.html" class="btn-cta-love">🔮 Giải Mã Tình Duyên Bằng Bài Tarot ➔</a>
+      </div>
+
+    </div>
+    <!-- /resultSection -->
+
+  </section>
+  <!-- /tool-section -->
+
+  <!-- ===================================================
+       ARTICLE SECTION — SEO Content
+       =================================================== -->
+  <article class="article-section">
+
+    <h2>Bói Tình Yêu 12 Cung Hoàng Đạo – Cặp đôi của bạn có hợp nhau?</h2>
+
+    <p>Từ hàng nghìn năm trước, các nhà chiêm tinh học đã khám phá ra rằng ngày sinh của một người không chỉ ảnh hưởng đến tính cách mà còn quyết định phần lớn đến sự hòa hợp trong tình yêu. <strong>Bói tình yêu 12 cung hoàng đạo</strong> là một trong những phương pháp phổ biến nhất để hiểu rõ hơn về mức độ tương hợp giữa hai người, không chỉ dựa trên cảm xúc nhất thời mà còn dựa trên bản chất nguyên thủy của từng cung.</p>
+
+    <p>Công cụ trên đây của BoiTinhYeu.net sử dụng ma trận nguyên tố độc quyền, kết hợp chiêm tinh học phương Tây và phân tích tâm lý hiện đại để mang đến cho bạn cái nhìn toàn diện nhất về <strong>tình yêu các cung hoàng đạo</strong>.</p>
+
+    <h2>4 Nhóm Nguyên Tố Trong Chiêm Tinh Tình Yêu</h2>
+
+    <p>Trong chiêm tinh học, 12 cung hoàng đạo được chia thành 4 nhóm nguyên tố chính, mỗi nhóm mang đặc trưng năng lượng riêng biệt:</p>
+
+    <h3>🔥 Nguyên Tố Lửa – Bạch Dương, Sư Tử, Nhân Mã</h3>
+    <p>Những cung thuộc nguyên tố Lửa thường có năng lượng mạnh mẽ, nhiệt huyết và đầy đam mê. Họ yêu cuộc sống, yêu mãnh liệt và không bao giờ làm mọi thứ một cách nửa vời. Trong tình yêu, người thuộc nhóm Lửa luôn là người chủ động, lãng mạn và tạo ra những khoảnh khắc đáng nhớ.</p>
+    <ul>
+      <li><strong>Tương hợp tốt nhất:</strong> Lửa và Khí (bổ sung nhau hoàn hảo), Lửa và Lửa (đam mê cháy bỏng)</li>
+      <li><strong>Cần nỗ lực hơn:</strong> Lửa và Nước (đối cực, dễ dập tắt nhau)</li>
+    </ul>
+
+    <h3>🌱 Nguyên Tố Đất – Kim Ngưu, Xử Nữ, Ma Kết</h3>
+    <p>Những cung thuộc nguyên tố Đất mang trong mình sự kiên định, thực tế và đáng tin cậy. Họ không yêu nhanh nhưng khi đã yêu, họ yêu bền lâu và trọn vẹn. Trong mối quan hệ, người Đất là người xây dựng nền tảng vững chắc, chăm chỉ vun đắp và coi trọng sự ổn định hơn những cảm xúc bốc đồng.</p>
+    <ul>
+      <li><strong>Tương hợp tốt nhất:</strong> Đất và Nước (hòa hợp tuyệt vời), Đất và Đất (bền vững lâu dài)</li>
+      <li><strong>Cần nỗ lực hơn:</strong> Đất và Khí (khác biệt về giá trị sống)</li>
+    </ul>
+
+    <h3>💨 Nguyên Tố Khí – Song Tử, Thiên Bình, Bảo Bình</h3>
+    <p>Những cung thuộc nguyên tố Khí là những tâm hồn tự do, thông minh và yêu giao tiếp. Họ kết nối với đối phương qua trí tuệ và ngôn ngữ, luôn có những cuộc trò chuyện thú vị và ý tưởng mới mẻ. Trong tình yêu, người Khí cần không gian tự do và một người bạn đời có thể thách thức tư duy của họ.</p>
+    <ul>
+      <li><strong>Tương hợp tốt nhất:</strong> Khí và Lửa (kích thích lẫn nhau), Khí và Khí (tâm đầu ý hợp)</li>
+      <li><strong>Cần nỗ lực hơn:</strong> Khí và Đất (khó tìm điểm chung)</li>
+    </ul>
+
+    <h3>🌊 Nguyên Tố Nước – Cự Giải, Bọ Cạp, Song Ngư</h3>
+    <p>Những cung thuộc nguyên tố Nước là những tâm hồn nhạy cảm, sâu sắc và giàu cảm xúc. Họ yêu bằng cả trái tim, đồng cảm sâu sắc và kết nối với đối phương ở mức độ tâm linh. Trong tình yêu, người Nước mang lại sự ấm áp và chiều sâu cảm xúc mà không nhóm nào có thể sánh bằng.</p>
+    <ul>
+      <li><strong>Tương hợp tốt nhất:</strong> Nước và Đất (nền tảng lý tưởng), Nước và Nước (thấu cảm sâu xa)</li>
+      <li><strong>Cần nỗ lực hơn:</strong> Nước và Lửa (cần cân bằng cảm xúc và đam mê)</li>
+    </ul>
+
+    <h2>Cách Xem Độ Hợp Nhau Theo Tương Hợp 12 Cung Hoàng Đạo</h2>
+
+    <p>Để hiểu đúng về <strong>tương hợp 12 cung hoàng đạo</strong>, bạn cần nhìn vào nhiều yếu tố hơn là chỉ đơn thuần xem hai cung có cùng nguyên tố hay không. Công cụ của chúng tôi phân tích 4 chỉ số quan trọng:</p>
+
+    <ul>
+      <li><strong>Giao Tiếp:</strong> Hai người có thể hiểu và lắng nghe nhau không? Có dễ dàng chia sẻ cảm xúc và suy nghĩ không?</li>
+      <li><strong>Cảm Xúc:</strong> Mức độ đồng cảm và thấu hiểu cảm xúc của nhau như thế nào?</li>
+      <li><strong>Lãng Mạn:</strong> Hai người có khả năng duy trì sự lãng mạn và hứng khởi trong mối quan hệ không?</li>
+      <li><strong>Gắn Kết:</strong> Nền tảng lâu dài, cam kết và sự trung thành trong mối quan hệ.</li>
+    </ul>
+
+    <div class="highlight-box">
+      💡 <strong>Lưu ý quan trọng:</strong> Không có cặp đôi nào là hoàn toàn không hợp nhau. Mọi sự kết hợp đều có tiềm năng nếu cả hai người sẵn sàng hiểu và tôn trọng sự khác biệt của nhau. Con số % chỉ là điểm khởi đầu — tình yêu thật sự được xây dựng bằng nỗ lực và cam kết hàng ngày.
+    </div>
+
+    <h2>Ý Nghĩa Của Việc Thấu Hiểu Bói Cung Hoàng Đạo Trong Tình Yêu</h2>
+
+    <p>Nhiều người băn khoăn: "Liệu <strong>bói cung hoàng đạo</strong> có thực sự chính xác không?" Câu trả lời là: chiêm tinh học không phải là bùa phép, nhưng nó là một công cụ tự nhận thức vô cùng giá trị.</p>
+
+    <p>Khi bạn hiểu rằng người yêu là cung Bọ Cạp (Nước) — họ cần sự an toàn cảm xúc, sự trung thành tuyệt đối và có xu hướng giữ kín cảm xúc thật — bạn sẽ không còn cảm thấy khó chịu khi họ "lạnh lùng" hay "bí ẩn". Thay vào đó, bạn hiểu đó là cách họ tự bảo vệ bản thân, và bạn có thể chủ động tạo ra môi trường an toàn để họ mở lòng.</p>
+
+    <p>Tương tự, nếu bạn biết đối phương là cung Song Tử (Khí) — họ cần sự kích thích trí tuệ, không gian tự do và đa dạng trong cuộc sống — bạn sẽ không cảm thấy bị bỏ rơi khi họ cần thời gian riêng hay muốn khám phá những sở thích mới.</p>
+
+    <h3>Chiêm Tinh Học Là Ngôn Ngữ Của Sự Thấu Hiểu</h3>
+    <p>Giá trị thực sự của việc tìm hiểu về <strong>tình yêu các cung hoàng đạo</strong> không nằm ở chỗ "cung này hợp với cung kia" mà nằm ở chỗ bạn hiểu hơn về:</p>
+    <ul>
+      <li>Nhu cầu cảm xúc của bản thân và đối phương</li>
+      <li>Phong cách giao tiếp và giải quyết xung đột</li>
+      <li>Điều gì khiến đối phương cảm thấy được yêu thương</li>
+      <li>Những điểm mạnh bạn có thể học từ đối phương</li>
+    </ul>
+
+    <p>Khi cả hai người đều hiểu ngôn ngữ tình yêu của nhau — dù có hợp cung hay không — mối quan hệ sẽ trở nên sâu sắc, bền vững và hạnh phúc hơn rất nhiều.</p>
+
+    <!-- Internal Links Block -->
+    <div class="internal-links-block">
+      <p>🌟 Khám phá thêm các công cụ bói tình yêu để có cái nhìn toàn diện hơn:</p>
+      <div class="links-row">
+        <a href="index.html">💕 Bói Tình Yêu Theo Tên</a>
+        <a href="#">🃏 Bói Bài Tarot Tình Yêu</a>
+        <a href="#">🏮 Bói Phong Thủy Hôn Nhân</a>
+      </div>
+    </div>
+
+  </article>
+
+</main>
+
+<!-- ===================================================
+     FOOTER
+     =================================================== -->
+<footer>
+  <span class="footer-heart">💕</span>
+  <p>&copy; 2025 <a href="index.html">BoiTinhYeu.net</a> — Khám phá tình yêu qua khoa học tâm linh</p>
+  <p style="font-size:0.78rem;margin-top:0.3rem;color:var(--text-light)">Kết quả chỉ mang tính tham khảo và giải trí</p>
+</footer>
+
+<!-- Scroll Top -->
+<button id="scrollTop" aria-label="Cuộn lên đầu trang">↑</button>
+
+<!-- Zodiac JS -->
+<script src="js/zodiac.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,231 @@
+/* =============================================
+   congiap.css – Bói Tình Yêu 12 Con Giáp
+   BoiTinhYeu.net
+   ============================================= */
+
+/* ---- REUSE base tokens from style.css ---- */
+
+/* --- Select Row --- */
+.giap-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  justify-content: center;
+  align-items: flex-end;
+  margin: 2rem 0 1.5rem;
+}
+
+.giap-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  min-width: 160px;
+}
+
+.giap-block-label {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: #9d174d;
+  text-align: center;
+}
+
+.giap-select {
+  appearance: none;
+  -webkit-appearance: none;
+  background: #fff0f6;
+  border: 2px solid #ffb3c6;
+  border-radius: 14px;
+  padding: 0.65rem 1.1rem;
+  font-size: 1.05rem;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 600;
+  color: #6b21a8;
+  cursor: pointer;
+  text-align: center;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.giap-select:focus {
+  outline: none;
+  border-color: #ff758c;
+  box-shadow: 0 0 0 3px rgba(255,117,140,0.25);
+}
+
+.giap-divider {
+  font-size: 2rem;
+  line-height: 1;
+  padding-bottom: 0.3rem;
+  user-select: none;
+}
+
+/* --- Result Card --- */
+#resultCard {
+  display: none;
+  margin: 2.5rem auto 0;
+  max-width: 640px;
+  background: linear-gradient(135deg, #fff0f6 0%, #f3e8ff 100%);
+  border: 2px solid #ffb3c6;
+  border-radius: 24px;
+  padding: 2.2rem 1.8rem;
+  box-shadow: 0 8px 32px rgba(255,117,140,0.15);
+  animation: fadeUp 0.55s ease;
+}
+#resultCard.visible {
+  display: block;
+}
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* --- Percent Ring --- */
+.percent-ring-wrap {
+  position: relative;
+  width: 170px;
+  height: 170px;
+  margin: 0 auto 1.5rem;
+}
+.percent-ring-wrap svg {
+  transform: rotate(-90deg);
+}
+.ring-bg {
+  fill: none;
+  stroke: #fce7f3;
+  stroke-width: 14;
+}
+.ring-fill {
+  fill: none;
+  stroke: #ff758c;
+  stroke-width: 14;
+  stroke-linecap: round;
+  stroke-dasharray: 439.82;
+  stroke-dashoffset: 439.82;
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.4,0,0.2,1),
+              stroke 0.4s ease;
+}
+.ring-center-text {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.15rem;
+}
+.ring-pct {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.1rem;
+  font-weight: 700;
+  color: #9d174d;
+  line-height: 1;
+}
+.ring-label {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #c084fc;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+/* --- Rel Label Badge --- */
+.rel-label {
+  display: inline-block;
+  margin: 0.5rem auto 1rem;
+  padding: 0.35rem 1rem;
+  border-radius: 99px;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 0.92rem;
+  letter-spacing: 0.03em;
+}
+
+/* --- Result Title --- */
+.result-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.25rem;
+  color: #7c3aed;
+  text-align: center;
+  margin-bottom: 1rem;
+  line-height: 1.4;
+}
+
+/* --- Analysis text --- */
+.result-analysis {
+  font-family: 'Quicksand', sans-serif;
+  font-size: 1rem;
+  color: #4b5563;
+  line-height: 1.7;
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+
+/* --- Dr.Love Note --- */
+.drlove-note {
+  background: linear-gradient(135deg, #fff0f6, #ede9fe);
+  border-left: 4px solid #ff758c;
+  border-radius: 0 14px 14px 0;
+  padding: 1rem 1.2rem;
+  margin: 1.2rem 0;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.95rem;
+  color: #5b21b6;
+  line-height: 1.65;
+}
+.drlove-note strong {
+  color: #be185d;
+}
+
+/* --- Advice Box --- */
+.advice-box {
+  background: #f0fdf4;
+  border: 1.5px solid #86efac;
+  border-radius: 14px;
+  padding: 0.9rem 1.2rem;
+  margin-top: 1rem;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.93rem;
+  color: #166534;
+  line-height: 1.65;
+}
+.advice-box::before {
+  content: '💡 Lời khuyên: ';
+  font-weight: 700;
+}
+
+/* --- CTA Button --- */
+.btn-cta-love {
+  display: block;
+  margin: 2rem auto 0;
+  text-align: center;
+  background: linear-gradient(135deg, #ff758c 0%, #c084fc 60%, #f59e0b 100%);
+  color: #fff;
+  font-family: 'Quicksand', sans-serif;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-decoration: none;
+  padding: 0.85rem 2rem;
+  border-radius: 99px;
+  box-shadow: 0 4px 20px rgba(255,117,140,0.35);
+  letter-spacing: 0.03em;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.btn-cta-love:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(255,117,140,0.45);
+}
+
+/* --- Responsive --- */
+@media (max-width: 480px) {
+  .giap-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .giap-divider {
+    transform: rotate(90deg);
+  }
+  #resultCard {
+    padding: 1.5rem 1rem;
+  }
+}
