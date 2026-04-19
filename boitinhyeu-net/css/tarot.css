@@ -1,0 +1,466 @@
+/* ===================================================
+   tarot.css — Bói Bài Tarot Tình Yêu
+   Glassmorphism + Hiệu ứng Pick (Tick Xanh) + Pastel Dream
+   Tối ưu 100% mượt mà trên mọi thiết bị
+   =================================================== */
+
+/* ===================================================
+   TAROT SECTION
+   =================================================== */
+.tarot-section {
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.5rem;
+  margin: 1.2rem 0;
+  background: rgba(255, 255, 255, 0.52);
+  backdrop-filter: blur(18px) saturate(1.5);
+  -webkit-backdrop-filter: blur(18px) saturate(1.5);
+  border: 1.5px solid rgba(255, 255, 255, 0.78);
+  box-shadow: 0 8px 32px rgba(130, 60, 180, 0.15), inset 0 1px 0 rgba(255,255,255,0.9);
+}
+
+.tarot-title {
+  text-align: center;
+  margin-bottom: 0.3rem;
+  background: linear-gradient(135deg, #9b59b6, #e91e8c, #ff8fab);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.tarot-subtitle {
+  text-align: center;
+  font-size: 0.9rem;
+  color: var(--text-light);
+  margin-bottom: 0.6rem;
+}
+
+/* ===================================================
+   BREATHING INSTRUCTION
+   =================================================== */
+.tarot-breathe {
+  text-align: center;
+  margin: 0.8rem auto 1.8rem;
+  padding: 1rem 1.2rem;
+  max-width: 480px;
+  background: linear-gradient(135deg, rgba(216, 180, 254, 0.3), rgba(255, 182, 193, 0.3));
+  border: 1.5px dashed rgba(192, 132, 252, 0.5);
+  border-radius: var(--radius-md);
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  font-style: italic;
+  line-height: 1.65;
+}
+
+.tarot-breathe span {
+  display: block;
+  font-size: 1.6rem;
+  margin-bottom: 0.4rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+/* ===================================================
+   SELECTION PROGRESS
+   =================================================== */
+.tarot-progress {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+  margin-bottom: 1.6rem;
+  flex-wrap: wrap;
+}
+
+.progress-slot {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.42rem 1rem;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255, 255, 255, 0.7);
+  border-radius: 99px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-light);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.progress-slot .slot-dot {
+  width: 10px; height: 10px;
+  border-radius: 50%;
+  background: rgba(192, 132, 252, 0.3);
+  border: 2px solid rgba(192, 132, 252, 0.5);
+  transition: all 0.3s ease;
+  flex-shrink: 0;
+}
+
+.progress-slot.filled {
+  background: linear-gradient(135deg, rgba(155, 89, 182, 0.15), rgba(233, 30, 140, 0.12));
+  border-color: rgba(192, 132, 252, 0.7);
+  color: #9b59b6;
+}
+
+.progress-slot.filled .slot-dot {
+  background: linear-gradient(135deg, #10b981, #059669); /* Đổi chấm slot thành xanh khi chọn */
+  border-color: transparent;
+  box-shadow: 0 0 6px rgba(16, 185, 129, 0.5);
+}
+
+/* ===================================================
+   CARD DECK GRID
+   =================================================== */
+.card-deck {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 0.7rem;
+  margin-bottom: 1.5rem;
+}
+
+@media (min-width: 480px) { .card-deck { gap: 0.9rem; } }
+@media (min-width: 640px) { .card-deck { gap: 1rem; } }
+
+/* ===================================================
+   TAROT CARD — HIỆU ỨNG PICK (TICK XANH)
+   =================================================== */
+.card-wrapper {
+  cursor: pointer;
+  position: relative;
+  aspect-ratio: 2/3;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  user-select: none;
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: var(--radius-xs);
+}
+
+/* --- Mặt sau của bài (Luôn hiển thị trên deck) --- */
+.card-back {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-xs);
+  background: linear-gradient(145deg, #2d1b4e 0%, #4a1664 40%, #1a0a2e 100%);
+  border: 2px solid rgba(192, 132, 252, 0.4);
+  box-shadow: 0 4px 16px rgba(100, 30, 160, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.card-back::before {
+  content: '';
+  position: absolute;
+  inset: 6px;
+  border: 1.5px solid rgba(192, 132, 252, 0.25);
+  border-radius: calc(var(--radius-xs) - 4px);
+  transition: border-color 0.3s ease;
+}
+
+/* Họa tiết trang trí */
+.card-back-art {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 0.2rem;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.card-back-stars { font-size: 1.5rem; opacity: 0.85; filter: drop-shadow(0 0 6px rgba(216, 180, 254, 0.7)); }
+.card-back-heart { font-size: 1rem; opacity: 0.7; filter: drop-shadow(0 0 4px rgba(255, 143, 171, 0.8)); animation: heartbeatSoft 2.5s ease-in-out infinite; }
+
+/* Ẩn mặt hình đi vì ta chỉ lật ngửa ở phần kết quả */
+.card-front {
+  display: none;
+}
+
+/* --- HIỆU ỨNG HOVER & CLICK CHO LÁ BÀI CHƯA CHỌN --- */
+.card-wrapper:not(.selected):hover {
+  transform: translateY(-8px);
+}
+.card-wrapper:not(.selected):hover .card-back {
+  border-color: rgba(216, 180, 254, 0.8);
+  box-shadow: 0 8px 24px rgba(155, 89, 182, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}
+.card-wrapper:not(.selected):active {
+  transform: scale(0.95);
+}
+
+/* ===================================================
+   TRẠNG THÁI ĐÃ CHỌN (TICK XANH BÙNG NỔ)
+   =================================================== */
+.card-wrapper.selected {
+  cursor: default;
+  pointer-events: none;
+  transform: scale(0.92); /* Lá bài lún nhẹ xuống bàn */
+}
+
+.card-wrapper.selected .card-back {
+  border-color: #10b981; /* Viền sáng xanh ngọc lục bảo */
+  box-shadow: 0 0 20px rgba(16, 185, 129, 0.5), inset 0 0 15px rgba(16, 185, 129, 0.3);
+  background: linear-gradient(145deg, #1f3b3b 0%, #122929 100%); /* Nền tối lại để nổi bật tick xanh */
+}
+
+.card-wrapper.selected .card-back::before {
+  border-color: rgba(16, 185, 129, 0.4);
+}
+
+/* Mờ họa tiết cũ đi */
+.card-wrapper.selected .card-back-art {
+  opacity: 0.1; 
+}
+
+/* Dấu tick xanh pop-up giữa lá bài */
+.card-wrapper.selected .card-back::after {
+  content: '✔';
+  position: absolute;
+  font-size: 3.5rem;
+  color: #10b981;
+  text-shadow: 0 0 15px rgba(255, 255, 255, 0.8), 0 0 8px rgba(16, 185, 129, 0.8);
+  z-index: 10;
+  animation: popTick 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+@keyframes popTick {
+  0% { opacity: 0; transform: scale(0.2) rotate(-20deg); }
+  70% { transform: scale(1.2) rotate(10deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+
+/* ===================================================
+   RESULT AREA (GIỮ NGUYÊN CSS CŨ CỦA BẠN)
+   =================================================== */
+#tarotResult {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.5s ease, visibility 0.5s ease;
+  margin-top: 1rem;
+}
+#tarotResult.visible {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+.result-divider {
+  text-align: center;
+  font-size: 1.3rem;
+  margin: 1.5rem 0;
+  letter-spacing: 0.3em;
+  opacity: 0.6;
+}
+.result-heading {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.2rem, 4vw, 1.6rem);
+  background: linear-gradient(135deg, #9b59b6, #e91e8c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 1.5rem;
+}
+
+/* SPREAD CARDS KẾT QUẢ */
+.spread-result {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+@media (min-width: 540px) { .spread-result { grid-template-columns: repeat(3, 1fr); } }
+
+.spread-card {
+  border-radius: var(--radius-md);
+  padding: 1.2rem 1rem;
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(14px) saturate(1.4);
+  -webkit-backdrop-filter: blur(14px) saturate(1.4);
+  border: 1.5px solid rgba(255, 255, 255, 0.8);
+  box-shadow: 0 6px 24px rgba(155, 89, 182, 0.14);
+  text-align: center;
+  animation: fadeInUp 0.5s ease both;
+}
+.spread-card:nth-child(2) { animation-delay: 0.15s; }
+.spread-card:nth-child(3) { animation-delay: 0.3s; }
+
+.spread-position-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: #fff;
+  background: linear-gradient(135deg, #9b59b6, #e91e8c);
+  border-radius: 99px;
+  padding: 0.25rem 0.8rem;
+  display: inline-block;
+  margin-bottom: 0.8rem;
+}
+.spread-card-image {
+  position: relative;
+  width: 100%;
+  max-width: 120px;
+  margin: 0 auto 0.7rem;
+  aspect-ratio: 2/3;
+  border-radius: var(--radius-xs);
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(155, 89, 182, 0.25);
+}
+.spread-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border-radius: var(--radius-xs);
+}
+.spread-emoji-fallback {
+  font-size: 2.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(145deg, rgba(216, 180, 254, 0.2), rgba(255, 182, 193, 0.2));
+  filter: drop-shadow(0 3px 8px rgba(155, 89, 182, 0.3));
+}
+.spread-emoji {
+  font-size: 2.4rem;
+  display: block;
+  margin-bottom: 0.5rem;
+  filter: drop-shadow(0 3px 8px rgba(155, 89, 182, 0.3));
+}
+.spread-card-name {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(0.9rem, 2.5vw, 1.05rem);
+  font-weight: 700;
+  color: var(--pink-dark);
+  margin-bottom: 0.5rem;
+}
+.spread-card-meaning {
+  font-size: 0.85rem;
+  color: var(--text-mid);
+  line-height: 1.65;
+}
+
+/* COMBINED READING BOX */
+.combined-reading {
+  margin-top: 1.2rem;
+  padding: 1.2rem 1.2rem;
+  background: linear-gradient(135deg, rgba(216, 180, 254, 0.2), rgba(255, 182, 193, 0.2));
+  border: 1.5px solid rgba(192, 132, 252, 0.4);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+.combined-reading h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  color: #9b59b6;
+  margin-bottom: 0.7rem;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.combined-reading p {
+  font-size: 0.92rem;
+  color: var(--text-dark);
+  line-height: 1.75;
+  margin-bottom: 0;
+}
+
+/* CTA & RESET */
+.cta-wrapper {
+  text-align: center;
+  margin-top: 1.8rem;
+  padding-top: 1.4rem;
+  border-top: 2px dashed rgba(192, 132, 252, 0.3);
+}
+.btn-reset {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin: 0.6rem auto 0;
+  padding: 0.6rem 1.4rem;
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(192, 132, 252, 0.45);
+  border-radius: 99px;
+  font-family: 'Quicksand', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #9b59b6;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+.btn-reset:hover {
+  background: rgba(192, 132, 252, 0.15);
+  border-color: rgba(192, 132, 252, 0.7);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 14px rgba(155, 89, 182, 0.25);
+}
+
+/* ARTICLE SECTION */
+.tarot-article {
+  border-radius: var(--radius-lg);
+  padding: 2rem 1.5rem;
+  margin: 0 0 1.5rem;
+  background: rgba(255, 255, 255, 0.52);
+  backdrop-filter: blur(16px) saturate(1.4);
+  -webkit-backdrop-filter: blur(16px) saturate(1.4);
+  border: 1.5px solid rgba(255, 255, 255, 0.78);
+  box-shadow: 0 8px 32px rgba(130, 60, 180, 0.12), inset 0 1px 0 rgba(255,255,255,0.9);
+}
+.tarot-article h2 {
+  background: linear-gradient(135deg, #9b59b6, #e91e8c);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin: 1.8rem 0 0.8rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 2px dashed rgba(192, 132, 252, 0.4);
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.2rem, 4vw, 1.8rem);
+  line-height: 1.3;
+}
+.tarot-article h2:first-child { margin-top: 0; }
+.tarot-article h3 {
+  color: #9b59b6;
+  margin: 1.2rem 0 0.6rem;
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1rem, 3.5vw, 1.3rem);
+}
+.tarot-article p { color: var(--text-dark); font-size: 0.97rem; margin-bottom: 1rem; }
+.tarot-article ul, .tarot-article ol { padding-left: 1.4rem; margin-bottom: 1rem; }
+.tarot-article li { margin-bottom: 0.5rem; font-size: 0.97rem; color: var(--text-dark); }
+.tarot-highlight {
+  background: linear-gradient(135deg, rgba(216, 180, 254, 0.25), rgba(255, 182, 193, 0.2));
+  border-left: 4px solid #c084fc;
+  border-radius: 0 var(--radius-xs) var(--radius-xs) 0;
+  padding: 0.8rem 1rem;
+  margin: 1rem 0;
+  font-style: italic;
+  color: var(--text-mid);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* MOBILE OPTIMIZATIONS */
+@media (max-width: 479px) {
+  .card-deck { grid-template-columns: repeat(5, 1fr); gap: 0.5rem; }
+  .card-back-stars { font-size: 1.1rem; }
+  .tarot-section { padding: 1.5rem 1rem; }
+  .spread-card { padding: 1rem 0.8rem; }
+  .card-wrapper.selected .card-back::after { font-size: 2.5rem; }
+}
+@media (min-width: 768px) {
+  .tarot-section, .tarot-article { padding: 2.5rem 2rem; }
+}
